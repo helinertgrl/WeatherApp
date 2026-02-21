@@ -63,5 +63,24 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.google.android.gms:play-services-location:21.3.0")
+    // ViewModel ve LiveData/State yönetimi için
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+
+// Material Icons Extended (Daha fazla ikon için, rüzgar vb. için gerekli)
+    implementation("androidx.compose.material:material-icons-extended:1.6.0")
+    // Retrofit & OkHttp (Güncel versiyonlar)
+    implementation("com.squareup.retrofit2:retrofit:2.11.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.11.0")
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
+    // Lottie (Teknolojik ve canlı hava durumu ikonları için)
+    implementation("com.airbnb.android:lottie-compose:6.4.0")
+
+    // Google Play Services Location
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // Material Icons Extended
+    implementation("androidx.compose.material:material-icons-extended:1.7.0")
 
 }

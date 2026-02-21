@@ -2,31 +2,44 @@ package com.example.weatherapp.model
 
 import com.google.gson.annotations.SerializedName
 
-//API'den gelen Json nesnesi
+// Anlık Hava Durumu İçin
 data class WeatherResponse(
-    @SerializedName("name")
-    val name: String,
-
-    @SerializedName("main") //Sıcaklık ve nem gibi ana veriler
-    val main: Main,
-
-    @SerializedName("weather")
-    val weather: List<Weather>
+    @SerializedName("name") val name: String?,
+    @SerializedName("main") val main: MainData,
+    @SerializedName("weather") val weather: List<WeatherDescription>,
+    @SerializedName("wind") val wind: WindData,
+    @SerializedName("dt") val dt: Long // Güncelleme zamanı için
 )
 
-data class Main(
-    @SerializedName("temp")
-    val temp: Double
+// 5 Günlük Tahmin Listesi İçin
+data class ForecastResponse(
+    @SerializedName("list") val list: List<ForecastItem>,
+    @SerializedName("city") val city: CityInfo
 )
 
-data class Weather(
-    @SerializedName("main")  //ana durum yani clear, clouds
-    val main: String,
-
-    @SerializedName("description") //Detaylı durum yani parçalı bulutlu
-    val description: String,
-
-    @SerializedName("icon")
-    val icon: String
+data class CityInfo(
+    @SerializedName("name") val name: String
 )
 
+data class MainData(
+    @SerializedName("temp") val temp: Double,
+    @SerializedName("humidity") val humidity: Int,
+    @SerializedName("pressure") val pressure: Int,
+    @SerializedName("feels_like") val feelsLike: Double
+)
+
+data class WeatherDescription(
+    @SerializedName("main") val main: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("icon") val icon: String
+)
+
+data class WindData(
+    @SerializedName("speed") val speed: Double
+)
+
+data class ForecastItem(
+    @SerializedName("dt_txt") val dtTxt: String,
+    @SerializedName("main") val main: MainData,
+    @SerializedName("weather") val weather: List<WeatherDescription>
+)
