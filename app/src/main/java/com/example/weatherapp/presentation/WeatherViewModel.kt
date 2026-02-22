@@ -26,17 +26,18 @@ class WeatherViewModel : ViewModel() {
 
     private val API_KEY = "96625d4a2c647965c7520d944c6a8c61"
 
-    fun fetchWeather(city: String) {
+    fun fetchWeather(city: String, context: android.content.Context) {
+        if (!com.example.weatherapp.model.NetworkUtil.isInternetAvailable(context)) {
+            errorMessage = "İnternet bağlantısı yok."
+            return
+        }
+
         viewModelScope.launch {
             startLoading()
             try {
-                // Anlık Hava Durumu
                 val response = RetrofitClient.apiService.value.getCurrentWeather(city, API_KEY)
                 weatherData = response
-
-                // 5 Günlük Tahmin
                 fetchForecast(city)
-
                 errorMessage = null
             } catch (e: Exception) {
                 handleError(e)
@@ -46,13 +47,17 @@ class WeatherViewModel : ViewModel() {
         }
     }
 
-    fun fetchWeatherByLocation(lat: Double, lon: Double) {
+    fun fetchWeatherByLocation(lat: Double, lon: Double, context: android.content.Context) {
+        if (!com.example.weatherapp.model.NetworkUtil.isInternetAvailable(context)) {
+            errorMessage = "İnternet bağlantısı yok."
+            return
+        }
+
         viewModelScope.launch {
             startLoading()
             try {
                 val response = RetrofitClient.apiService.value.getWeatherByCoords(lat, lon, API_KEY)
                 weatherData = response
-
                 response.name?.let { fetchForecast(it) }
                 errorMessage = null
             } catch (e: Exception) {
@@ -66,10 +71,8 @@ class WeatherViewModel : ViewModel() {
     private suspend fun fetchForecast(city: String) {
         try {
             val response = RetrofitClient.apiService.value.getFiveDayForecast(city, API_KEY)
-            // Her günün sadece öğlen saatindeki (12:00) verisini alarak listeyi temizliyoruz
             forecastData = response.list.filter { it.dtTxt.contains("12:00:00") }
         } catch (e: Exception) {
-            // Tahmin gelmezse ana ekranı bozma, sadece liste boş kalır
             forecastData = emptyList()
         }
     }
