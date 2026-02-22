@@ -9,14 +9,6 @@ data class WeatherResponse(
     @SerializedName("wind") val wind: WindData,
     @SerializedName("dt") val dt: Long
 )
-
-data class ForecastResponse(
-    @SerializedName("list") val list: List<ForecastItem>,
-    @SerializedName("city") val city: CityInfo
-)
-
-data class CityInfo(@SerializedName("name") val name: String)
-
 data class MainData(
     val temp: Double,
     val humidity: Int,
