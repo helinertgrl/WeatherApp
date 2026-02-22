@@ -5,9 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.weatherapp.model.ForecastItem
-import com.example.weatherapp.model.RetrofitClient
-import com.example.weatherapp.model.WeatherResponse
+import com.example.weatherapp.data.model.ForecastItem
+import com.example.weatherapp.util.NetworkUtil
+import com.example.weatherapp.data.remote.RetrofitClient
+import com.example.weatherapp.data.model.WeatherResponse
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -27,7 +28,7 @@ class WeatherViewModel : ViewModel() {
     private val API_KEY = "96625d4a2c647965c7520d944c6a8c61"
 
     fun fetchWeather(city: String, context: android.content.Context) {
-        if (!com.example.weatherapp.model.NetworkUtil.isInternetAvailable(context)) {
+        if (!NetworkUtil.isInternetAvailable(context)) {
             errorMessage = "İnternet bağlantısı yok."
             return
         }
@@ -48,7 +49,7 @@ class WeatherViewModel : ViewModel() {
     }
 
     fun fetchWeatherByLocation(lat: Double, lon: Double, context: android.content.Context) {
-        if (!com.example.weatherapp.model.NetworkUtil.isInternetAvailable(context)) {
+        if (!NetworkUtil.isInternetAvailable(context)) {
             errorMessage = "İnternet bağlantısı yok."
             return
         }

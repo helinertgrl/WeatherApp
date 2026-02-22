@@ -1,5 +1,7 @@
-package com.example.weatherapp.model
+package com.example.weatherapp.data.remote
 
+import com.example.weatherapp.data.model.ForecastResponse
+import com.example.weatherapp.data.model.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,7 +20,7 @@ interface WeatherApiService {
         @Query("appid") apiKey: String,
         @Query("units") units: String = "metric",
         @Query("lang") lang: String = "tr"
-    ): ForecastResponse // Güncellendi: ForecastResponse döndürüyor
+    ): ForecastResponse
 
     @GET("weather")
     suspend fun getWeatherByCoords(
