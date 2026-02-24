@@ -23,6 +23,4 @@ object RetrofitClient {
     }
 
     val apiService = lazy { retrofit.value.create(WeatherApiService::class.java) }
-
-
 }
