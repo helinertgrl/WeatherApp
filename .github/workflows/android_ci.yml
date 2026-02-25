@@ -24,9 +24,13 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: ./gradlew build
 
       - name: Run Unit Tests
+        env:
+          WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
         run: ./gradlew test
 
       - name: Upload Build Artifact

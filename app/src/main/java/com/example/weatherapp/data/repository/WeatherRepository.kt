@@ -17,13 +17,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import com.example.weatherapp.BuildConfig
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "weather_app_prefs")
 
 object WeatherRepository {
     private val apiService = RetrofitClient.apiService.value
-    private const val API_KEY = "96625d4a2c647965c7520d944c6a8c61"
-
+    private const val API_KEY = BuildConfig.WEATHER_API_KEY
     private val FAVORITE_CITIES_KEY = stringPreferencesKey("favorite_cities_json")
     private val gson = Gson()
     private val scope = CoroutineScope(Dispatchers.IO)
