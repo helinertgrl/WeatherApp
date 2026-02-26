@@ -27,7 +27,7 @@
 
 | 🌤️ Daytime Weather | 🌙 Night / Cloudy | ❤️ Favorites | 🎯 Daily Suggestion |
 |:---:|:---:|:---:|:---:|
-| <img src="screenshots/weather_day.png" width="180"/> | <img src="screenshots/weather_night.png" width="180"/> | <img src="screenshots/favorites.png" width="180"/> | <img src="screenshots/activity.png" width="180"/> |
+| <img src="screenshot/daytime_weather.png" width="180"/> | <img src="screenshot/night_cloudy.png" width="180"/> | <img src="screenshot/favorites.png" width="180"/> | <img src="screenshot/daily_suggestion.png" width="180"/> |
 | Dynamic gradient UI adapts to current conditions | Night mode with deep navy gradient | Saved cities with weather-colored cards | Smart activity recommendations |
 
 </div>
